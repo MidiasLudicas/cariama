@@ -42,12 +42,12 @@ public class Player : MonoBehaviour
             if (Input.GetKey(KeyCode.Z))
             {
                 //col.size = new Vector2(1, .75f);
-                transform.localScale = new Vector2(1, .75f);
+                transform.localScale = new Vector2(1, .5f);
             }
             else if (Input.GetKeyUp(KeyCode.Z))
             {
                 //col.size = new Vector2(1, 1.5f);
-                transform.localScale = new Vector2(1, 1.5f);
+                transform.localScale = new Vector2(1, 1);
             }
         //}
         //if (Application.platform == RuntimePlatform.Android)
@@ -56,13 +56,13 @@ public class Player : MonoBehaviour
         //}
         //Camera
         cam.transform.position = new Vector3(transform.position.x + 5, transform.position.y, -10);
-        if (cam.transform.position.x <= 0)
+        if (cam.transform.position.x <= 5)
         {
-            cam.transform.position = new Vector3(0, cam.transform.position.y, -10);
+            cam.transform.position = new Vector3(5, cam.transform.position.y, -10);
         }
-        else if (cam.transform.position.x >= 97)
+        else if (cam.transform.position.x >= 89)
         {
-            cam.transform.position = new Vector3(97, cam.transform.position.y, -10);
+            cam.transform.position = new Vector3(89, cam.transform.position.y, -10);
         }
         if(cam.transform.position.y <= 0)
         {
