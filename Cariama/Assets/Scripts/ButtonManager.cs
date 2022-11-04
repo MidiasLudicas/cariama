@@ -9,4 +9,8 @@ public class ButtonManager : MonoBehaviour
     {
         SceneManager.LoadScene(cena);
     }
+    public void Run()
+    {
+        PlayerIntro.run = true;
+    }
 }

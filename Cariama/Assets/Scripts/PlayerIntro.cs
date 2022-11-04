@@ -1,0 +1,46 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.UI;
+using UnityEngine.SceneManagement;
+
+public class PlayerIntro : MonoBehaviour
+{
+    public float speed;
+    public static Animator anima;
+    public static bool run = false;
+    public Button startBtn;
+    // Start is called before the first frame update
+    void Start()
+    {
+        anima = GetComponent<Animator>();
+        startBtn.interactable = false;
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+        if(!run)
+        {
+            if (transform.position.x < 0)
+                transform.Translate(speed * Time.deltaTime, 0f, 0f);
+            else
+            {
+                anima.SetTrigger("Idle");
+                startBtn.interactable = true;
+            }
+        }
+        else
+        {
+            anima.SetTrigger("Run");
+            transform.Translate(speed * Time.deltaTime, 0f, 0f);
+        }
+    }
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if(collision.tag == "obstacle")
+        {
+            SceneManager.LoadScene("Game");
+        }
+    }
+}
