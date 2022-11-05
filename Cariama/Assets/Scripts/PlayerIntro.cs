@@ -7,7 +7,7 @@ using UnityEngine.SceneManagement;
 public class PlayerIntro : MonoBehaviour
 {
     public float speed;
-    public static Animator anima;
+    private Animator anima;
     public static bool run = false;
     public Button startBtn;
     // Start is called before the first frame update
@@ -26,13 +26,14 @@ public class PlayerIntro : MonoBehaviour
                 transform.Translate(speed * Time.deltaTime, 0f, 0f);
             else
             {
-                anima.SetTrigger("Idle");
+                anima.SetBool("Idle", true);
                 startBtn.interactable = true;
             }
         }
         else
         {
-            anima.SetTrigger("Run");
+            anima.SetBool("Idle", false);
+            anima.SetBool("Run", true);
             transform.Translate(speed * Time.deltaTime, 0f, 0f);
         }
     }

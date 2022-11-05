@@ -13,6 +13,8 @@ public class Player : MonoBehaviour
     SpriteRenderer sprite;
     int jump;
     int x;
+
+    public static bool canMove;
     // Start is called before the first frame update
     void Start()
     {
@@ -21,39 +23,18 @@ public class Player : MonoBehaviour
         sprite = GetComponent<SpriteRenderer>();
         x = 2;
         jump = 0;
+
+        canMove = false;
     }
 
     // Update is called once per frame
     void Update()
     {
-        //Run
-        transform.Translate(speed * Time.deltaTime, 0f, 0f);
+        if(canMove)
+        {
+            MovePlayer();
+        }
 
-        //Windows
-        //if (Application.platform == RuntimePlatform.WindowsEditor)
-        //{
-            //Jump
-            if (Input.GetKeyDown(KeyCode.Space) && jump < 2)
-            {
-                rb2d.velocity = Vector2.up * jumpVelocity;
-                jump += x;
-            }
-            //Duck
-            if (Input.GetKey(KeyCode.Z))
-            {
-                //col.size = new Vector2(1, .75f);
-                transform.localScale = new Vector2(1, .5f);
-            }
-            else if (Input.GetKeyUp(KeyCode.Z))
-            {
-                //col.size = new Vector2(1, 1.5f);
-                transform.localScale = new Vector2(1, 1);
-            }
-        //}
-        //if (Application.platform == RuntimePlatform.Android)
-        //{
-
-        //}
         //Camera
         cam.transform.position = new Vector3(transform.position.x + 5, transform.position.y, -10);
         if (cam.transform.position.x <= 5)
@@ -72,6 +53,38 @@ public class Player : MonoBehaviour
 
     }
 
+    public void MovePlayer()
+    {
+        //Run
+        transform.Translate(speed * Time.deltaTime, 0f, 0f);
+
+        //Windows
+        //if (Application.platform == RuntimePlatform.WindowsEditor)
+        //{
+        //Jump
+        if (Input.GetKeyDown(KeyCode.Space) && jump < 2)
+        {
+            rb2d.velocity = Vector2.up * jumpVelocity;
+            jump += x;
+        }
+        //Duck
+        if (Input.GetKey(KeyCode.Z))
+        {
+            //col.size = new Vector2(1, .75f);
+            transform.localScale = new Vector2(1, .5f);
+        }
+        else if (Input.GetKeyUp(KeyCode.Z))
+        {
+            //col.size = new Vector2(1, 1.5f);
+            transform.localScale = new Vector2(1, 1);
+        }
+        //}
+        //if (Application.platform == RuntimePlatform.Android)
+        //{
+
+        //}
+
+    }
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if(collision.gameObject.tag == "coin")
