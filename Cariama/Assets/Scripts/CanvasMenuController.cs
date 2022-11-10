@@ -23,6 +23,14 @@ public class CanvasMenuController : MonoBehaviour
         
     }
 
+    public void Update()
+    {
+        if(Input.GetKeyDown(KeyCode.Space) && startBut.activeSelf)
+        {
+            StartCoroutine(EnableCanvasUi());
+        }
+    }
+
     public void StartGame()
     {
         StartCoroutine(EnableCanvasUi());

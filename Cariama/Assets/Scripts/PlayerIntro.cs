@@ -8,13 +8,14 @@ public class PlayerIntro : MonoBehaviour
 {
     public float speed;
     private Animator anima;
-    public static bool run = false;
+    public static bool run;
     public Button startBtn;
     // Start is called before the first frame update
     void Start()
     {
         anima = GetComponent<Animator>();
         startBtn.interactable = false;
+        run = false;
     }
 
     // Update is called once per frame

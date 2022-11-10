@@ -13,4 +13,9 @@ public class ButtonManager : MonoBehaviour
     {
         PlayerIntro.run = true;
     }
+
+    public void Exit()
+    {
+        Application.Quit();
+    }
 }
